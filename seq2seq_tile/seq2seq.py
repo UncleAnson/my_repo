@@ -87,7 +87,7 @@ y_mask = Lambda(lambda x: K.cast(K.greater(K.expand_dims(x, 2), 0), 'float32'))(
 def to_one_hot(x): # 输出一个词表大小的向量，来标记该词是否在文章出现过
     x, x_mask = x
     x = K.cast(x, 'int32')
-    x = K.one_hot(x, len(chars)+4)   # +4，因为0-3是代表四个特殊标记
+    x = K.one_hot(x, len(chars)+4)   # +4，因为0-3是代表四个特殊标记 https://blog.csdn.net/nini_coded/article/details/79250600
     x = K.sum(x_mask * x, 1, keepdims=True) # 独热双保险
     x = K.cast(K.greater(x, 0.5), 'float32') # 超过0.5则是1，低于0.5则是0
     return x
