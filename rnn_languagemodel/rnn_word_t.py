@@ -154,15 +154,17 @@ with tf.Session() as session:
 
 
 # 运行模型生成句子
-while True:
-    prompt = "请输入%s个字："%n_input
-    sentence = input(prompt)
-    inputword = sentence.strip()
+with tf.Session() as session:
+    session.run(tf.global_variables_initializer())
+    while True:
+        prompt = "请输入%s个字："%n_input
+        sentence = input(prompt)
+        inputword = sentence.strip()
 
-    if len(inputword)!=n_input:
-        print("你输入的字符长度为：",len(inputword),"，请输入%s个字"%n_input)
-        continue
-    try:
+        if len(inputword)!=n_input:
+            print("你输入的字符长度为：",len(inputword),"，请输入%s个字"%n_input)
+            continue
+        # try:
         inputword = get_ch_label_v(None, word_num_map, inputword)
 
         for i in range(32):
@@ -173,5 +175,5 @@ while True:
             inputword = inputword[1: ]
             inputword.append(onehot_pred_index)
         print(sentence)
-    except:
-        print('该字我还没学会')
+        # except:
+        #     print('该字我还没学会')
