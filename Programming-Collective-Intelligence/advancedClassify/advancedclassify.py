@@ -40,7 +40,7 @@ def lineartrain(rows):
         # Get the class of this point
         cl = row.match
 
-        averages.setdefault(cl, [0.0] * (len(row.data)))
+        averages.setdefault(cl, [0.0] * (len(row.data))) # 相当于初始化多维坐标系上的点
         counts.setdefault(cl, 0)
 
         # Add this point to the averages
@@ -50,7 +50,7 @@ def lineartrain(rows):
         # Keep track of how many points in each class
         counts[cl] += 1
 
-    # Divide sums by counts to get the averages
+    # Divide sums by counts to get the averages 可以用numpy数组直接解决
     for cl, avg in averages.items():
         for i in range(len(avg)):
             avg[i] /= counts[cl]
