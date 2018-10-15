@@ -121,6 +121,7 @@ x_prior = ScaleShift()(x_one_hot) # 学习输出的先验分布（标题的字�
 embedding = Embedding(len(chars)+4, char_size)
 # x，y共用一个中文嵌入层
 x = embedding(x)
+
 y = embedding(y)
 
 # encoder，双层双向LSTM
